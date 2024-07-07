@@ -11,10 +11,12 @@ int main(int argc, char **argv) {
         while (argv[i] && argv[++i])
         {
             argv += i;
-			printf("%s\n", argv[i]);
+			printf("%s\n", *argv);
             i = 0;
             while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
                 i++;
+            if (i)
+                exec(argv, )
         }
     }
     return status;

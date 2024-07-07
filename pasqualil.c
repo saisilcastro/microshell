@@ -1,6 +1,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <stdio.h>
 
 int err(char *str)
 {
@@ -24,6 +25,7 @@ int exec(char **argv, int i, char **envp)
     int status;
     int has_pipe = argv[i] && !strcmp(argv[i], "|");
 
+    
     /**
     if (!has_pipe && !strcmp(*argv, "cd"))
         return cd(argv, i);
@@ -63,9 +65,7 @@ int main(int argc, char **argv, char **envp)
             i = 0;
             while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
                 i++;
-            printf("%i\n", i);
             if (i) {
-                printf("%s\n", *argv);
                 status = exec(argv, i, envp);
             }
         }
